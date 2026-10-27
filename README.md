@@ -34,6 +34,27 @@ Hold jump to jump higher. Hold aim to shoot in 16 directions.
 - Aiming in 16 directions.
 - Checkpoints and a short invincibility time after a hit.
 
+## How it's built
+
+About 1,100 lines of GDScript.
+
+**Structure**
+- Each game object (player, enemy, bullet, checkpoint, goal) is its own small scene. Levels are made by placing these scenes.
+- Two global managers:
+  - `GameManager` loads levels and handles checkpoints and respawns.
+  - `AudioManager` plays music and sounds by name.
+
+**Patterns**
+- **Signals (Observer):** the player sends events like `died` and `health_changed`. The HUD and `GameManager` react to them.
+- **State machine:** enemies switch between states, e.g. `PATROL → CHASE → DIVE → DEAD`.
+- **Shared `take_damage()`:** bullets can hit anything that has this method, so player and enemies use the same bullet.
+- **Groups:** objects find the player through the `Player` group, not a fixed path.
+
+**Small details**
+- Checkpoints are kept after you die and the level reloads.
+- Game values (speed, jump, health) are set in the Godot editor.
+- Keyboard and gamepad use the same input actions.
+
 ## Credits
 
 - **Music:** "Orbital Colossus" by **Matthew Pablo** (https://www.matthewpablo.com), [OpenGameArt](https://opengameart.org/content/space-boss-battle-theme), [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
