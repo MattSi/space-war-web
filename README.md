@@ -2,6 +2,8 @@
 
 A 2D platform shooter made with **Godot 4.7**.
 
+This repository only holds the web build. **Source code:** https://github.com/MattSi/space-war
+
 ## ▶ Play
 
 **https://mattsi.github.io/space-war-web/**
